@@ -1,0 +1,27 @@
+{
+  "name": "data-center-injection",
+  "version": "1.0.0",
+  "description": "cyanData-injection",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/backToNature/data-center-injection.git"
+  },
+  "author": "guohao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/backToNature/data-center-injection/issues"
+  },
+  "homepage": "https://github.com/backToNature/data-center-injection#readme",
+   "devDependencies": {
+        "gulp": "*",
+        "gulp-util": "*",
+        "gulp-uglify": "*",
+        "gulp-concat": "*",
+        "gulp-seajs-combo": "*",
+        "gulp-insert": "*"
+   }
+}
