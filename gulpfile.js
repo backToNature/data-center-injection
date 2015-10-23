@@ -7,6 +7,7 @@ var path = require('path'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     insert = require('gulp-insert'),
+//    minifyCss = require('gulp-minify-css'),
     seajsCombo = require( 'gulp-seajs-combo' );
 
 //引入包配置
@@ -19,19 +20,32 @@ gulp.task('sea', function () {
             var fileName = path.basename(file.path);
             return contents + 'seajs.use(\''+ fileName +'\');';
         }))
+//        .pipe(uglify())
         .pipe( gulp.dest('build')
     );
 });
 
 gulp.task('css', function () {
-
+    gulp.src('src/**/*.css')
+        .pipe(concat('init.css'))
+//        .pipe(minifyCss())
+        .pipe(gulp.dest('build/')
+    );
 });
 
 gulp.task('watch', function () {
-    var watcher = gulp.watch(['src/**/*', '!src/*.html', '!src/*.js', '!src/*.css'], ['build']);
+    var watcher = gulp.watch(['src/modules/**/*.js'], ['sea']);
     watcher.on('change', function(event) {
         console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
     });
+});
+
+gulp.task('lib', function () {
+    gulp.src('src/*lib/*.js')
+//        .pipe(minifyCss())
+        .pipe(uglify())
+        .pipe(gulp.dest('build/')
+    );
 });
 
 

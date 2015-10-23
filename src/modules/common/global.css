@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#cyanData-wrapper {
+    overflow: scroll;
+    font-family: "Microsoft YaHei";
+    position: fixed;
+    right: 0;
+    width: 70vw;
+    height: 100vh;
+    bottom: 0;
+    background: #393939;
+    z-index: 2147483647;
+    transition:width 1s;
+    -moz-transition:width 1s; /* Firefox 4 */
+    -webkit-transition:width 1s; /* Safari and Chrome */
+    -o-transition:width 1s; /* Opera */
+    padding: 10px;
+}
+
+#cyanData-wrapper ul {
+    list-style: none;
+}
+
+#cyanData-wrapper .clearfix{
+    overflow:hidden;
+    _zoom:1;
+}

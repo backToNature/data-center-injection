@@ -1,0 +1,41 @@
+#cyanData-wrapper .cyanData-header {
+    border-bottom: 2px dashed #3FBC8D;
+}
+
+#cyanData-wrapper .cyanData-header .cyanData-header-title-wrapper {
+    text-align: center;
+    margin: 30px 0;
+}
+
+#cyanData-wrapper .cyanData-header .cyanData-header-title-wrapper .cyanData-header-hide {
+    color: #fff;
+    text-align: left;
+    cursor: pointer;
+}
+
+#cyanData-wrapper .cyanData-header .cyanData-header-title-wrapper .cyanData-header-title {
+    color: #fff;
+}
+
+#cyanData-wrapper .cyanData-header .cyanData-header-title-wrapper .cyanData-header-params {
+    text-align: center;
+    padding: 5px 0;
+}
+
+#cyanData-wrapper .cyanData-header .cyanData-header-title-wrapper .cyanData-header-params li {
+    padding: 5px;
+    float: left;
+    color: #fff;
+}
+
+#cyanData-wrapper .cyanData-header .cyanData-header-title-wrapper .cyanData-header-params .cyanData-params-color0 {
+    background: #EE0A3B;
+}
+
+#cyanData-wrapper .cyanData-header .cyanData-header-title-wrapper .cyanData-header-params .cyanData-params-color1 {
+    background: #FFDE00;color: #C141E3;
+}
+
+#cyanData-wrapper .cyanData-header .cyanData-header-title-wrapper .cyanData-header-params .cyanData-params-color2 {
+    background: #3FBC8D;
+}
