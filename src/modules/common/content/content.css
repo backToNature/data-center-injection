@@ -1,0 +1,28 @@
+#cyanData-wrapper .cyanData-content {
+    padding: 20px 0;
+}
+
+#cyanData-wrapper .cyanData-content .cyanData-content-iframeWrapper {
+    position: relative;
+}
+
+#cyanData-wrapper .cyanData-content .cyanData-content-iframeWrapper .cyanData-content-iframe-title {
+    color: #fff;
+    margin: 10px 0;
+}
+
+#cyanData-wrapper .cyanData-content .cyanData-content-iframeWrapper .cyanData-content-iframe-title:before {
+    content: ' ';
+    padding: 5px;
+    background: #c40000;
+    margin-right: 10px;
+}
+
+#cyanData-wrapper .cyanData-content .cyanData-content-iframeWrapper .cyanData-iframe {
+    width: 700px;
+    height: 400px;
+}
+
+#cyanData-wrapper .cyanData-content .cyanData-content-iframeWrapper .cyanData-param {
+    background: #fff;
+}

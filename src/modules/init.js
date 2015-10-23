@@ -3,15 +3,12 @@ define(function(require, exports, module) {
     var $$Stroage = require('../lib/localforage.nopromises.min.js');
     var loading = require('util/loading.js');
     if ($('#SOHUCS').length) {
-
+        require('common/data.js');
         // 如果有接入畅言得话
         loading(function () {
             require('common/header/index.js')();
-            if ($('#cy-cbox-wrapper').length) {
-                // wap站
-            } else {
-                // PC站
-            }
+
+
         });
 
     }
