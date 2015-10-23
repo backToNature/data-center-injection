@@ -7,8 +7,7 @@ define(function(require, exports, module) {
         // 如果有接入畅言得话
         loading(function () {
             require('common/header/index.js')();
-
-
+            require('common/content/index.js')();
         });
 
     }

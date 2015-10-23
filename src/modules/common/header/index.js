@@ -1,10 +1,10 @@
 define(function(require, exports, module) {
-    var $$tmp = require('tmp.js');
+    var $$tmp = require('header_tpl.js');
     var $ = require('../../../lib/jquery-2.1.4.min.js');
     var $$template = require('../../../lib/artTemplate.min.js');
     var $$data = require('../../util/data-center.js');
 
-    var $cyanDataWrapper = $('#cyanData-wrapper');
+    var $cyanDataHeader = $('.cyanData-header');
     var getData = function () {
         var dataCenter = $$data.get('dataCenter'),
             tipsArr, isv = dataCenter.isv;
@@ -42,15 +42,15 @@ define(function(require, exports, module) {
                 var tpl_data = {list: tipsArr};
                 var render = $$template.compile($$tmp);
                 var html = render(tpl_data);
-                $cyanDataWrapper.append(html);
+                $cyanDataHeader.append(html);
             }
         });
 
     };
     var eventBind = function () {
-        $cyanDataWrapper.delegate('.cyanData-header-hide', 'click', function (e) {
+        var $cyanDataWrapper = $('#cyanData-wrapper');
+        $cyanDataHeader.delegate('.cyanData-header-hide', 'click', function (e) {
             var $icon = $('.cyanData-header-hide');
-
             if ($icon.text() === '>>') {
                 $cyanDataWrapper.css('width', '5vw');
                 $icon.text('<<');
@@ -60,6 +60,7 @@ define(function(require, exports, module) {
             }
         });
     };
+
     var init = function () {
         renderTpl();
         eventBind();

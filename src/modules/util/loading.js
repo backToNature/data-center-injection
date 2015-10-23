@@ -6,7 +6,14 @@ define(function(require, exports, module) {
         var $cyanDataWrapper = $('<div id="cyanData-wrapper"></div>'),
             $body = $(window.document.body);
         $body.append($cyanDataWrapper);
+
+        var $cyanDataHeader = $('<div class="cyanData-header"></div>');
+        $cyanDataWrapper.append($cyanDataHeader);
+
+        var $cyanDataContent = $('<div class="cyanData-content"></div>');
+        $cyanDataWrapper.append($cyanDataContent);
     };
+    
     var loading = function (fn) {
         var $press = $('<div class="cyan-data-press"></div>'),
             $spinner = $('<div class="spinner"><div class="dot1"></div><div class="dot2"></div></div>'),

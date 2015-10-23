@@ -16,7 +16,7 @@ define(function(require, exports, module) {
     var iframe = '{{each iframeList as value i}}' +
         '<div class="cyanData-content-iframeWrapper">' +
         '<h3 class="cyanData-content-iframe-title">{{value.title}}</h3>' +
-        '<iframe class="cyanData-iframe" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" allowtransparency="true" src="value.url"></iframe>' +
+        '<iframe class="cyanData-iframe" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" allowtransparency="true" src="{{value.url}}"></iframe>' +
         '</div>' +
         '{{/each}}';
     var params = '{{each paramsList as value i}}' +
@@ -25,5 +25,8 @@ define(function(require, exports, module) {
         '<div id="cyanData-backend-param" class="cyanData-iframe cyanData-param"></div>' +
         '</div>' +
         '{{/each}}';
-    module.exports = tmpWrapper;
+    module.exports = {
+        iframe: iframe,
+        params: params
+    };
 });

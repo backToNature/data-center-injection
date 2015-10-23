@@ -2,7 +2,6 @@ define(function (require, exports, module) {
     var uri = {
         set: function (uri, key, value) {
             var origin = uri.substring(0, uri.indexOf('?') + 1);
-
             var QueryObj = this.parseQueryString(uri);
             if (typeof key === 'string') {
                 QueryObj[key] = value;
