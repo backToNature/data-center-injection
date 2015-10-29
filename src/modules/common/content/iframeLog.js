@@ -3,7 +3,6 @@ define(function(require, exports, module) {
     var $ = require('../../../lib/jquery-2.1.4.min.js');
     var $$template = require('../../../lib/artTemplate.min.js');
     var $$data = require('../../util/data-center.js');
-    var $$uri = require('../../util/uri.js');
 
     var dealData = function () {
         var addZero = function (num) {
@@ -35,14 +34,14 @@ define(function(require, exports, module) {
             for (key in obj) {
                 uri += (key + '=' + obj[key] + '&');
             }
-            uri = uri.substring(0, uri.length - 2);
+            uri = uri.substring(0, uri.length - 1);
             return uri;
         };
 
         return [
             {title: 'pv统计', url: concatUri(getTplItem({pid: 269, field: 'pv', fKey: 2}))},
             {title: 'uv统计', url: concatUri(getTplItem({pid: 269, field: 'uv', fKey: 3}))},
-            {title: '评论数', url: concatUri(getTplItem({pid: 294, field: 4656, fKey: 4}))}
+            {title: '评论数', url: concatUri(getTplItem({pid: 294, field: 'comment_unaudit', fKey: 4}))}
         ];
     };
 

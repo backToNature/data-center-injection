@@ -38,10 +38,13 @@ define(function(require, exports, module) {
                 if (data.code !== 0) {
                     return;
                 }
-                tipsArr.push('广告位：' + data.positions.join('|'));
+                if (data.positions) {
+                    tipsArr.push('广告位：' + data.positions.join('|'));
+                }
                 var tpl_data = {list: tipsArr};
                 var render = $$template.compile($$tmp);
                 var html = render(tpl_data);
+                console.log(html);
                 $cyanDataHeader.append(html);
             }
         });

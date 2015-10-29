@@ -1,41 +1,3 @@
-define('uri',function (require, exports, module) {
-    var uri = {
-        set: function (uri, key, value) {
-            var origin = uri.substring(0, uri.indexOf('?') + 1);
-            var QueryObj = this.parseQueryString(uri);
-            if (typeof key === 'string') {
-                QueryObj[key] = value;
-            }
-            var i = 0;
-            var query = '';
-            for (var k in QueryObj) {
-                if (i == 0) {
-                    query += k + '=' +  QueryObj[k];
-                    i ++;
-                } else {
-                    query += '&' + k + '=' +  QueryObj[k];
-                }
-            }
-            return (origin + query);
-        },
-        parseQueryString: function (url) {
-            var reg_url =/^[^\?]+\?([\w\W]+)$/,
-                reg_para=/([^&=]+)=([\w\W]*?)(&|$)/g,
-                arr_url = reg_url.exec( url ),
-                ret = {};
-            if( arr_url && arr_url[1] ){
-
-                var str_para = arr_url[1],result;
-                while((result = reg_para.exec(str_para)) != null){
-                    ret[result[1]] = result[2];
-                }
-            }
-            return ret;
-        }
-    };
-
-    module.exports = uri;
-});
 define('content_tpl',function(require, exports, module) {
     var tmpWrapper = '<div class="cyanData-content">' +
             '{{each iframeList as value i}}' +
@@ -69,12 +31,11 @@ define('content_tpl',function(require, exports, module) {
     };
 });
 
-define('iframeLog',['content_tpl','jquery-2.1.4.min','artTemplate.min','data-center','uri'],function(require, exports, module) {
+define('iframeLog',['content_tpl','jquery-2.1.4.min','artTemplate.min','data-center'],function(require, exports, module) {
     var $$tmp = require('content_tpl');
     var $ = require('jquery-2.1.4.min');
     var $$template = require('artTemplate.min');
     var $$data = require('data-center');
-    var $$uri = require('uri');
 
     var dealData = function () {
         var addZero = function (num) {
@@ -106,14 +67,14 @@ define('iframeLog',['content_tpl','jquery-2.1.4.min','artTemplate.min','data-cen
             for (key in obj) {
                 uri += (key + '=' + obj[key] + '&');
             }
-            uri = uri.substring(0, uri.length - 2);
+            uri = uri.substring(0, uri.length - 1);
             return uri;
         };
 
         return [
             {title: 'pv统计', url: concatUri(getTplItem({pid: 269, field: 'pv', fKey: 2}))},
             {title: 'uv统计', url: concatUri(getTplItem({pid: 269, field: 'uv', fKey: 3}))},
-            {title: '评论数', url: concatUri(getTplItem({pid: 294, field: 4656, fKey: 4}))}
+            {title: '评论数', url: concatUri(getTplItem({pid: 294, field: 'comment_unaudit', fKey: 4}))}
         ];
     };
 
@@ -234,10 +195,13 @@ define('index',['header_tpl','jquery-2.1.4.min','artTemplate.min','data-center']
                 if (data.code !== 0) {
                     return;
                 }
-                tipsArr.push('广告位：' + data.positions.join('|'));
+                if (data.positions) {
+                    tipsArr.push('广告位：' + data.positions.join('|'));
+                }
                 var tpl_data = {list: tipsArr};
                 var render = $$template.compile($$tmp);
                 var html = render(tpl_data);
+                console.log(html);
                 $cyanDataHeader.append(html);
             }
         });
@@ -277,7 +241,12 @@ define('data',['jquery-2.1.4.min','data-center'],function(require, exports, modu
         $div.click();
         if (!$('#cy-cbox-wrapper').length) {
             // PC站
-            dataCenter = obj.changyan.global.dev.get('/');
+            if (obj.changyan.global) {
+                dataCenter = obj.changyan.global.dev.get('/');
+            } else {
+                dataCenter = obj.SOHUCS;
+                dataCenter.isv = dataCenter.isvConfig;
+            }
         } else {
             // wap站
             dataCenter = obj.cyan.getModule('widget/util/data-center.js').get('/');

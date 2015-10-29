@@ -11,7 +11,12 @@ define(function(require, exports, module) {
         $div.click();
         if (!$('#cy-cbox-wrapper').length) {
             // PC站
-            dataCenter = obj.changyan.global.dev.get('/');
+            if (obj.changyan.global) {
+                dataCenter = obj.changyan.global.dev.get('/');
+            } else {
+                dataCenter = obj.SOHUCS;
+                dataCenter.isv = dataCenter.isvConfig;
+            }
         } else {
             // wap站
             dataCenter = obj.cyan.getModule('widget/util/data-center.js').get('/');
