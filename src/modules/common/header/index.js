@@ -38,13 +38,36 @@ define(function(require, exports, module) {
                 if (data.code !== 0) {
                     return;
                 }
+
+
+                var tpl_data = {list: tipsArr, ad: {
+                    getConfigUrl: 'http://e.changyan.sohu.com/dataService/getConfig?appId=' + dataCenter.isv.appid,
+                    position: []
+                }};
+                console.log(getedData);
+                var category = dataCenter.isv.categoryId || null;
+                var title = window.document.title;
+                var url = window.location.href;
+                var uid = dataCenter.uuid || dataCenter.isv.uuid || '';
+                var userAgent = window.navigator && window.navigator.userAgent || '';
                 if (data.positions) {
-                    tipsArr.push('广告位：' + data.positions.join('|'));
+                    data.positions.forEach(function (item) {
+                        var temp = {};
+                        temp.position = item;
+                        temp.url = 'http://e.changyan.sohu.com/dataService/v2/getData?' + 'appId=' + dataCenter.isv.appid +
+                        '&category=' + category +
+                        '&title=' + title +
+                        '&url=' + url +
+                        '&uid=' + uid +
+                        '&userAgent=' + userAgent +
+                        '&position=' + item;
+                        tpl_data.ad.position.push(temp);
+                    });
                 }
-                var tpl_data = {list: tipsArr};
+                console.log(tpl_data);
+
                 var render = $$template.compile($$tmp);
                 var html = render(tpl_data);
-                console.log(html);
                 $cyanDataHeader.append(html);
             }
         });

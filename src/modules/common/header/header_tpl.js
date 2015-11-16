@@ -6,6 +6,12 @@ define(function(require, exports, module) {
                             '{{each list as value i}}' +
                                 '<li class="cyanData-params-color{{i%3}}">{{value}};</li>' +
                             '{{/each}}' +
+
+                            '<li class="cyanData-params-color1"><a target="_blank" href="{{ad.getConfigUrl}}">广告位:</a>' +
+                            '{{each ad.position as value i}}' +
+                            '<a target="_blank" href="{{value.url}}">{{value.position}}</a>|' +
+                            '{{/each}}' +
+        '                   </li>' +
                             '</ul>' +
                         '</div>';
                     
